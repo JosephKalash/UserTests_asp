@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace UserTests.models
 {
-    public class TestContext : DbContext
+    public class TestDbContext : DbContext
     {
-        public TestContext(DbContextOptions<TestContext> options) : base(options) { }
+        public TestDbContext(DbContextOptions<TestDbContext> options) : base(options) { }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var now = DateTime.UtcNow;

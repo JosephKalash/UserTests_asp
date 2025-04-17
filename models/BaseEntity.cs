@@ -8,9 +8,9 @@ namespace UserTests.models
 
     public class BaseEntity
     {
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

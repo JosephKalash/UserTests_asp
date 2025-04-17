@@ -1,19 +1,43 @@
 
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using UserTests.models;
+
 public interface IUserService
 {
-    User authenticate(string Username, string Password);
+    User? authenticate(string Username, string Password);
+    Task<User> register(string Username, string Password);
 
 }
 
 public class UserService : IUserService
 {
-    private List<User> _users = new List<User>{
-        new User { Id = 1, Username = "Joseph", Password = "1234"},
-        new User { Id = 2, Username = "Yazan", Password = "1234"}
-    };
-    User IUserService.authenticate(string Username, string Password)
+    public UserService(TestDbContext context)
     {
-        return _users.FirstOrDefault(x => x.Username == Username && x.Password == Password);
+        _context = context;
     }
+
+    private readonly PasswordHasher<User> _passwordHasher = new();
+    private readonly TestDbContext _context;
+
+    public async Task<User> register(string Username, string Password)
+    {
+        var user = new User { Username = Username };
+        var hashedPassowrd = _passwordHasher.HashPassword(user, Password);
+        user.PasswordHash = hashedPassowrd;
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+        return user;
+    }
+
+    User? IUserService.authenticate(string Username, string Password)
+    {
+        var user = _context.Users.FirstOrDefault(x => x.Username == Username);
+        if (user == null) return null;
+        var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, Password);
+        return result == PasswordVerificationResult.Success ? user : null;
+
+    }
+
 }

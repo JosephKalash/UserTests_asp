@@ -10,6 +10,8 @@ namespace UserTests.models
     {
         [Required]
         public string Username { get; set; }
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
 
         [JsonIgnore]
         public ICollection<UserTest> UserTests { get; set; }

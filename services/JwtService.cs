@@ -1,8 +1,9 @@
 // Services/JwtService.cs
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using UserTests.models;
 
 public interface IJwtService
 {
@@ -28,19 +29,18 @@ public class JwtService : IJwtService
 
         // Create security key
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
-        
+
         // Create credentials
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-        
+
         // Set claims - you can add more custom claims based on user
         var claims = new[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Username),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim("id", user.Id.ToString()),
-            new Claim("Role", user.Id == 1 ? "Admin" : "User")
         };
-        
+
         // Create token
         var token = new JwtSecurityToken(
             issuer: jwtIssuer,
@@ -49,7 +49,7 @@ public class JwtService : IJwtService
             expires: DateTime.Now.AddMinutes(jwtDurationMinutes),
             signingCredentials: credentials
         );
-        
+
         // Return serialized token
         return new JwtSecurityTokenHandler().WriteToken(token);
     }

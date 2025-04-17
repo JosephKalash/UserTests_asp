@@ -7,9 +7,9 @@ namespace UserTests.models
     public class UserAnswer : BaseEntity
     {
         [Required]
-        public int UserTestId { get; set; }
+        public string UserTestId { get; set; }
         [Required]
-        public int OptionId { get; set; }
+        public string OptionId { get; set; }
 
         [JsonIgnore]
         public UserTest UserTest { get; set; }

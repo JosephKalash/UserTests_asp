@@ -13,7 +13,7 @@ namespace UserTests.models
 
         public bool IsCorrect { get; set; } = false;
         [Required]
-        public int QuestionId { get; set; }
+        public string QuestionId { get; set; }
         [JsonIgnore]
         public Question Question { get; set; }
 

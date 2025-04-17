@@ -12,10 +12,9 @@ namespace UserTests.models
     {
         [Required]
         public string Text { get; set; }
-        [Column(TypeName = "nvarchar(24)")]
         public QuestionType Type { get; set; } = QuestionType.Single;
         [Required]
-        public int TestId { get; set; }
+        public string TestId { get; set; }
         [JsonIgnore]
         public Test Test { get; set; }
         [JsonIgnore]
