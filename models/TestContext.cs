@@ -27,12 +27,11 @@ namespace UserTests.models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Test>()
-                .HasMany(t => t.Questions)
-                .WithOne(q => q.Test)
-                .HasForeignKey(q => q.TestId);
+            modelBuilder.Entity<User>()
+                    .HasIndex(u => u.Username)
+                    .IsUnique();
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Option> Options { get; set; }

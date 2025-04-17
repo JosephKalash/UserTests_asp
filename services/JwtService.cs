@@ -39,6 +39,7 @@ public class JwtService : IJwtService
             new Claim(JwtRegisteredClaimNames.Sub, user.Username),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim("id", user.Id.ToString()),
+            new Claim("Role", user.IsAdmin ? "Admin" : "User")
         };
 
         // Create token

@@ -17,14 +17,14 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] UserLoging userRegister)
+    public async Task<IActionResult> Register([FromBody] UserRegister userRegister)
     {
         var (isValid, errors) = PasswordValidator.Validate(userRegister.Password);
         if (!isValid)
         {
             return BadRequest(errors);
         }
-        var user = await _userService.register(userRegister.Username, userRegister.Password);
+        var user = await _userService.register(userRegister);
         var token = _jwtService.GenerateToken(user);
         return Ok(new { user, token });
     }

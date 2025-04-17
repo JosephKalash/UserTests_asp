@@ -3,7 +3,7 @@
 public class AdminPolicy
 {
     public const string PolicyName = "Admin";
-    public const string ClaimValue = "admin";
+    public const string ClaimValue = "Admin";
 
 }
 public class UserPolicy

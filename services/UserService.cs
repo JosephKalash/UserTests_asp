@@ -7,7 +7,7 @@ using UserTests.models;
 public interface IUserService
 {
     User? authenticate(string Username, string Password);
-    Task<User> register(string Username, string Password);
+    Task<User> register(UserRegister userRegister);
 
 }
 
@@ -21,10 +21,10 @@ public class UserService : IUserService
     private readonly PasswordHasher<User> _passwordHasher = new();
     private readonly TestDbContext _context;
 
-    public async Task<User> register(string Username, string Password)
+    public async Task<User> register(UserRegister userRegister)
     {
-        var user = new User { Username = Username };
-        var hashedPassowrd = _passwordHasher.HashPassword(user, Password);
+        var user = new User { Username = userRegister.Username , IsAdmin = userRegister.IsAdmin};
+        var hashedPassowrd = _passwordHasher.HashPassword(user, userRegister.Password);
         user.PasswordHash = hashedPassowrd;
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
