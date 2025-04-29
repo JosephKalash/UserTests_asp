@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using FluentValidation;
 
 namespace UserTests.models
 {
@@ -12,8 +12,9 @@ namespace UserTests.models
 
         [JsonIgnore]
         public ICollection<UserTest> UserTests { get; set; }
-        [JsonIgnore]
-        public ICollection<Question> Questions { get; set; }
+        // [JsonIgnore]
+        public List<Question> Questions { get; set; } = [];
 
     }
+
 }

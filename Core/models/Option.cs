@@ -17,6 +17,7 @@ namespace UserTests.models
         [JsonIgnore]
         public Question Question { get; set; }
 
+        [JsonIgnore]
         public ICollection<UserAnswer> UserAnswers { get; set; }
     }
 }

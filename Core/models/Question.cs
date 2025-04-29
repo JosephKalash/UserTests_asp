@@ -2,7 +2,6 @@
 
 
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace UserTests.models
@@ -17,9 +16,10 @@ namespace UserTests.models
         public string TestId { get; set; }
         [JsonIgnore]
         public Test Test { get; set; }
-        [JsonIgnore]
-        public ICollection<Option> Options { get; set; }
+        // [JsonIgnore]
+        public List<Option> Options { get; set; } = [];
     }
+
 }
 
 public enum QuestionType
