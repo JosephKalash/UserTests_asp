@@ -10,10 +10,12 @@ namespace UserTests.models
         public string UserTestId { get; set; }
         [Required]
         public string OptionId { get; set; }
+        [Required]
+        public string QuestionId { get; set; }
 
         [JsonIgnore]
         public UserTest UserTest { get; set; }
-        [JsonIgnore]
         public Option Option { get; set; }
+        public Question Question { get; set; }
     }
 }

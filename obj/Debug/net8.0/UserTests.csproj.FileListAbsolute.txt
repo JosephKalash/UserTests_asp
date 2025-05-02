@@ -130,3 +130,4 @@
 /Users/joseph/Development/dotNet/UserTests/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/joseph/Development/dotNet/UserTests/bin/Debug/net8.0/AutoMapper.dll
 /Users/joseph/Development/dotNet/UserTests/bin/Debug/net8.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/joseph/Development/dotNet/UserTests/obj/Debug/net8.0/UserTests.sourcelink.json

@@ -6,6 +6,8 @@ using UserTests.models;
 public interface ITestService
 {
     public Task<List<Test>> GetTests();
+    public Task<List<Question>> GetQuestionts(string testId);
+    public Task<List<Option>> GetOptions(string questionId);
     public Task<TestResponseDto?> GetTest(string id);
     public Task<TestResponseDto> AddTest(CreateTestDto test);
     Task<Test?> EditTest(string id, UpdateTestDto updatedTest);
@@ -49,7 +51,7 @@ public class TestService(TestDbContext context, IMapper mapper) : ITestService
 
     public Task<List<Test>> GetTests()
     {
-        return _context.Tests.ToListAsync();
+        return _context.Tests.Include(t => t.Questions).ThenInclude(t => t.Options).ToListAsync();
     }
 
     public async Task<Test?> EditTest(string id, UpdateTestDto dto)
@@ -79,5 +81,15 @@ public class TestService(TestDbContext context, IMapper mapper) : ITestService
         _context.Tests.Remove(test);
         await _context.SaveChangesAsync();
         return id;
+    }
+
+    public Task<List<Question>> GetQuestionts(string testId)
+    {
+        return _context.Questions.Where(x => x.TestId == testId).ToListAsync();
+    }
+
+    public Task<List<Option>> GetOptions(string questionId)
+    {
+        return _context.Options.Where(x => x.QuestionId == questionId).ToListAsync();
     }
 }

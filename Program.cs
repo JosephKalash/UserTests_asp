@@ -61,6 +61,7 @@ builder.Services.AddDbContext<TestDbContext>(options => options.UseNpgsql(builde
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITestService, TestService>();
+builder.Services.AddScoped<IUserTestRepository, UserTestRepository>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddControllers()
@@ -98,7 +99,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API V1");
+
+        // Enable this to persist authorization data
+        c.EnablePersistAuthorization();
+    });
 }
 
 app.UseHttpsRedirection();

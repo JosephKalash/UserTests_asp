@@ -9,6 +9,8 @@ namespace UserTests.models
             CreateMap<Test, TestResponseDto>();
             CreateMap<Question, QuestionResponseDto>();
             CreateMap<Option, OptionResponseDto>();
+            CreateMap<UserAnswer, AddUserAnswerDto>();
+            CreateMap<UserTest, AddUserTestDto>();
         }
     }
 }

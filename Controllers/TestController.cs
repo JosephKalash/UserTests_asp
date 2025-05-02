@@ -22,6 +22,18 @@ public class TestController(ITestService testService) : ControllerBase
         var tests = await _testService.GetTests();
         return Ok(tests);
     }
+    [HttpGet("questions/{testId}")]
+    public async Task<ActionResult<IEnumerable<Question>>> GetQuestions(string testId)
+    {
+        var questions = await _testService.GetQuestionts(testId);
+        return Ok(questions);
+    }
+    [HttpGet("options/{questionId}")]
+    public async Task<ActionResult<IEnumerable<Option>>> GetOptions(string questionId)
+    {
+        var options = await _testService.GetOptions(questionId);
+        return Ok(options);
+    }
     [HttpPost]
     public async Task<ActionResult<Test>> AddTest([FromBody()] CreateTestDto test)
     {

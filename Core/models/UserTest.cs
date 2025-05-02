@@ -17,7 +17,6 @@ namespace UserTests.models
         [JsonIgnore]
         public Test Test { get; set; }
 
-        [JsonIgnore]
         public ICollection<UserAnswer> UserAnswers { get; set; }
     }
 
