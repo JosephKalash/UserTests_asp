@@ -3,16 +3,6 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UserTests.models;
 
-public interface ITestService
-{
-    public Task<List<Test>> GetTests();
-    public Task<List<Question>> GetQuestionts(string testId);
-    public Task<List<Option>> GetOptions(string questionId);
-    public Task<TestResponseDto?> GetTest(string id);
-    public Task<TestResponseDto> AddTest(CreateTestDto test);
-    Task<Test?> EditTest(string id, UpdateTestDto updatedTest);
-    Task<string?> DeleteTest(string id);
-}
 
 public class TestService(TestDbContext context, IMapper mapper) : ITestService
 
@@ -54,12 +44,12 @@ public class TestService(TestDbContext context, IMapper mapper) : ITestService
         return _context.Tests.Include(t => t.Questions).ThenInclude(t => t.Options).ToListAsync();
     }
 
-    public async Task<Test?> EditTest(string id, UpdateTestDto dto)
+    public async Task<Test?> UpdateTest(string id, UpdateTestDto dto)
     {
         var test = await _context.Tests.FindAsync(id);
 
         if (test == null)
-            return null;
+            throw new NotFoundException();
 
         if (dto.Title is not null)
             test.Title = dto.Title;
@@ -76,7 +66,7 @@ public class TestService(TestDbContext context, IMapper mapper) : ITestService
         var test = await _context.Tests.FindAsync(id);
 
         if (test == null)
-            return null;
+            throw new NotFoundException();
 
         _context.Tests.Remove(test);
         await _context.SaveChangesAsync();

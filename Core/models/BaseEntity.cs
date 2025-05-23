@@ -1,11 +1,7 @@
-
-
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UserTests.models
 {
-
     public class BaseEntity
     {
         // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

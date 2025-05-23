@@ -11,4 +11,11 @@ namespace UserTests.models
         [Required]
         public bool IsCorrect { get; set; }
     }
+
+    public class OptionResponseDto
+    {
+        public string Id { get; set; }
+        public string Text { get; set; }
+        public bool IsCorrect { get; set; }
+    }
 }

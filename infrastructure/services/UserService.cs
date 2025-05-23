@@ -1,25 +1,13 @@
-
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using UserTests.models;
 
-public interface IUserService
+public class UserService(TestDbContext context) : IUserService
 {
-    User? authenticate(string Username, string Password);
-    Task<User> register(UserRegister userRegister);
 
-}
-
-public class UserService : IUserService
-{
-    public UserService(TestDbContext context)
-    {
-        _context = context;
-    }
-
+    // should be moved to seprate class and add it as servcie with DI
     private readonly PasswordHasher<User> _passwordHasher = new();
-    private readonly TestDbContext _context;
+    private readonly TestDbContext _context = context;
 
     public async Task<User> register(UserRegister userRegister)
     {
@@ -37,7 +25,6 @@ public class UserService : IUserService
         if (user == null) return null;
         var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, Password);
         return result == PasswordVerificationResult.Success ? user : null;
-
     }
 
 }

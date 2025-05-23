@@ -29,7 +29,7 @@ public class AuthController : ControllerBase
         return Ok(new { user, token });
     }
     [HttpPost("login")]
-    public IActionResult Login([FromBody] UserLoging userLogin)
+    public IActionResult Login([FromBody] UserLogin userLogin)
     {
         var user = _userService.authenticate(userLogin.Username, userLogin.Password);
 

@@ -15,7 +15,7 @@ public class UserTestRepository(TestDbContext context) : IUserTestRepository
         {
             var userAnswer = new UserAnswer { UserTestId = userTest.Id, QuestionId = userAnswerDto.QuestionId, OptionId = userAnswerDto.OptionId };
             ///TODO: check if the answer is correct and increase the score property
-            var originalOption = _context.Options.Where(o => o.Id == userAnswerDto.OptionId).FirstOrDefault();
+            var originalOption = await _context.Options.Where(o => o.Id == userAnswerDto.OptionId).FirstOrDefaultAsync();
             questionsCount++;
             if (originalOption!.IsCorrect)
                 userTest.Score++;

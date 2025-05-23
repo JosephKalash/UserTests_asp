@@ -12,12 +12,11 @@ namespace UserTests.Controllers;
 [Authorize]
 public class UserController(TestDbContext context, IUserService userService) : ControllerBase
 {
-
-
     private readonly TestDbContext _context = context;
     private readonly IUserService _userService = userService;
 
     [HttpGet()]
+    [Authorize(Policy = AdminPolicy.PolicyName)]
     public async Task<ActionResult<IEnumerable<User>>> GetAll()
     {
         var users = await _context.Users.ToListAsync();
@@ -31,7 +30,7 @@ public class UserController(TestDbContext context, IUserService userService) : C
         return Ok(user_);
     }
     [HttpGet("me")]
-    public async Task<ActionResult<IEnumerable<User>>> GetMe()
+    public async Task<ActionResult<User>> GetMe()
     {
         var userId = User.FindFirstValue("id");
         if (userId == null) return Unauthorized();

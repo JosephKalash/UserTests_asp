@@ -35,7 +35,7 @@ public class TestController(ITestService testService) : ControllerBase
         return Ok(options);
     }
     [HttpPost]
-    public async Task<ActionResult<Test>> AddTest([FromBody()] CreateTestDto test)
+    public async Task<ActionResult<Test>> AddTest([FromBody] CreateTestDto test)
     {
         var test_ = await _testService.AddTest(test);
         return CreatedAtAction(nameof(GetById), new { id = test_.Id }, test_);
@@ -51,7 +51,7 @@ public class TestController(ITestService testService) : ControllerBase
     [HttpPatch("{id}")]
     public async Task<ActionResult> EditTest(string id, [FromBody] UpdateTestDto test)
     {
-        var test_ = await _testService.EditTest(id, test);
+        var test_ = await _testService.UpdateTest(id, test);
         if (test_ == null) return NotFound();
         return Ok(test_);
     }

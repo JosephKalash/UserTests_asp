@@ -1,17 +1,18 @@
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -41,12 +42,12 @@ builder.Services.AddSwaggerGen(c =>
             Array.Empty<string>()
         }
     });
-    c.MapType<QuestionType>(() => new Microsoft.OpenApi.Models.OpenApiSchema
+    c.MapType<QuestionType>(() => new OpenApiSchema
     {
         Type = "string",
         Enum = [.. Enum.GetNames(typeof(QuestionType))
-                    .Select(name => new Microsoft.OpenApi.Any.OpenApiString(name))
-                    .Cast<Microsoft.OpenApi.Any.IOpenApiAny>()]
+                    .Select(name => new OpenApiString(name))
+                    .Cast<IOpenApiAny>()]
     });
 });
 
@@ -67,7 +68,7 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(

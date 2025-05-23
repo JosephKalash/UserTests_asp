@@ -5,11 +5,6 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using UserTests.models;
 
-public interface IJwtService
-{
-    string GenerateToken(User user);
-}
-
 public class JwtService : IJwtService
 {
     private readonly IConfiguration _configuration;

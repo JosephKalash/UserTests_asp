@@ -10,12 +10,6 @@ namespace UserTests.models
         public int? Duration { get; set; }
         public List<QuestionResponseDto> Questions { get; set; } = [];
     }
-    public class OptionResponseDto
-    {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public bool IsCorrect { get; set; }
-    }
     public class CreateTestDto
     {
         [Required]
@@ -45,7 +39,7 @@ namespace UserTests.models
             });
             When(x => x.Duration != null, () =>
             {
-                RuleFor(x => x.Duration).GreaterThan(1).WithMessage("Duration must not be empty");
+                RuleFor(x => x.Duration).GreaterThan(1).LessThan(300).WithMessage("Duration must not be empty");
             });
         }
     }

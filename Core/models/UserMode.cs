@@ -6,7 +6,7 @@ public class UserRegister
     public bool IsAdmin { get; set; } = false;
 }
 
-public class UserLoging
+public class UserLogin
 {
     public string Username { get; set; }
     public string Password { get; set; }
