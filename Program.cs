@@ -108,6 +108,7 @@ if (app.Environment.IsDevelopment())
         c.EnablePersistAuthorization();
     });
 }
+app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 

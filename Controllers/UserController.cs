@@ -26,6 +26,12 @@ public class UserController(TestDbContext context, IUserService userService) : C
     [Authorize(Policy = AdminPolicy.PolicyName)]
     public async Task<ActionResult<User>> AddUser([FromBody] UserRegister user)
     {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState.Where(x => x.Value?.Errors.Count > 0)
+                .ToDictionary(x => x.Key, x => x.Value?.Errors.Select(e => e.ErrorMessage).ToList());
+
+        }
         var user_ = await _userService.register(user);
         return Ok(user_);
     }
