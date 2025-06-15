@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1FyXlijO4Zy0jT8YQjWIglZcY3Ecj3YqY/EeSgcYQFjDvJ4kIFRPHwerMwWtnXXZ51PJhbJQxTiAr7FeMUYCog==",
+  "dgSpecHash": "Y6jg1sx4IOA4Z5JkwvrpdV42LM41gxDHFgfQFGCRse901D3coc+2Lv0PoQLMZ+2pGmlKZdFhSIdtAC8FZ+HU4g==",
   "success": true,
-  "projectFilePath": "/Users/joseph/Development/dotNet/UserTests/UserTests.csproj",
+  "projectFilePath": "/Users/joseph/Development/UserTests_asp/UserTests.csproj",
   "expectedPackageFiles": [
     "/Users/joseph/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/joseph/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

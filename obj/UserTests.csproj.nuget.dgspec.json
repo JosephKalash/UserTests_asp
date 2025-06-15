@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/joseph/Development/dotNet/UserTests/UserTests.csproj": {}
+    "/Users/joseph/Development/UserTests_asp/UserTests.csproj": {}
   },
   "projects": {
-    "/Users/joseph/Development/dotNet/UserTests/UserTests.csproj": {
+    "/Users/joseph/Development/UserTests_asp/UserTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/joseph/Development/dotNet/UserTests/UserTests.csproj",
+        "projectUniqueName": "/Users/joseph/Development/UserTests_asp/UserTests.csproj",
         "projectName": "UserTests",
-        "projectPath": "/Users/joseph/Development/dotNet/UserTests/UserTests.csproj",
+        "projectPath": "/Users/joseph/Development/UserTests_asp/UserTests.csproj",
         "packagesPath": "/Users/joseph/.nuget/packages/",
-        "outputPath": "/Users/joseph/Development/dotNet/UserTests/obj/",
+        "outputPath": "/Users/joseph/Development/UserTests_asp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/joseph/.nuget/NuGet/NuGet.Config"
